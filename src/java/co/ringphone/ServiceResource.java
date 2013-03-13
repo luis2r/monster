@@ -119,7 +119,6 @@ public class ServiceResource {
                 } else if (resp[0] == 4) {
                     respuestallamId = "4";
 //                    respuestallam = "&iexclEs posible que el tel&eacutefono destino no exista o est&eacute fuera de servicio. <br>Intente con otro tel&eacutefono!";
-
                 }
             } else {
                 respuestallamId = "5";
