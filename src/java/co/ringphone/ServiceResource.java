@@ -114,6 +114,13 @@ public class ServiceResource {
 
                 } else if (resp[0] == 3) {
                     respuestallamId = "3";
+                    connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
+                    connnn.InsertarLlamadaDataBase();
+
+                    conn2 = new ConsultaIdSOS("1");
+                    idsos = conn2.consultar();
+                    InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1]);
+                    con2.InsertarLlamadaDataBase();
 //                    respuestallam = "&iexclTodos nuestros agentes est&aacuten ocupados en est&eacute momento. <br>Intentelo m&aacutes tarde!";
 
                 } else if (resp[0] == 4) {
