@@ -22,15 +22,17 @@ public class InsertLlamada {
 //    int idClave;
     String origen;
     String destino;
+    String estado;
     int consumoSegundos;
     static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer";
 
-    public InsertLlamada(String origen, String destino, int consumoSegundos) {
+    public InsertLlamada(String origen, String destino, int consumoSegundos, String estado) {
 
 //        this.idClave = idClave;
         this.origen = origen;
         this.destino = destino;
         this.consumoSegundos = consumoSegundos;
+        this.estado = estado;
     }
 
     public void InsertarLlamadaDataBase() {
@@ -88,8 +90,8 @@ public class InsertLlamada {
             stmt = conn.createStatement();
 
 
-            String query1 = "INSERT INTO `llamada_ringphone` (`id_llamada`, `id_usuario`, `origen`, `destino`, `tiempo_llamada_segundos`, `tiempo_llamada_minutos`, `valor_llamada`) "
-                    + "                                     VALUES (NULL,(SELECT  `id_usuario` FROM  `usuario` WHERE `usuario`.`extension_md5` = ?),?,?,?,CEILING(`tiempo_llamada_segundos`/60), `llamada_ringphone`.`tiempo_llamada_minutos`*(SELECT  `tarifa` FROM  `usuario` WHERE `usuario`.`extension_md5` = ?))";
+            String query1 = "INSERT INTO `llamada_ringphone` (`id_llamada`, `id_usuario`, `origen`, `destino`, `tiempo_llamada_segundos`, `tiempo_llamada_minutos`, `valor_llamada`, `estado`) "
+                    + "                                     VALUES (NULL,(SELECT  `id_usuario` FROM  `usuario` WHERE `usuario`.`extension_md5` = ?),?,?,?,CEILING(`tiempo_llamada_segundos`/60), `llamada_ringphone`.`tiempo_llamada_minutos`*(SELECT  `tarifa` FROM  `usuario` WHERE `usuario`.`extension_md5` = ?),?)";
             PreparedStatement ps = conn.prepareStatement(query1);
 //            ps.setInt(1, 45);
             ps.setString(1, this.origen);
@@ -97,6 +99,7 @@ public class InsertLlamada {
             ps.setString(3, this.destino);
             ps.setInt(4, this.consumoSegundos);
             ps.setString(5, this.origen);
+            ps.setString(6, this.estado);
 
             ps.executeUpdate();
 
@@ -128,7 +131,7 @@ public class InsertLlamada {
     }
 
     public static void main(String[] args) {
-        InsertLlamada con = new InsertLlamada("c9e1074f5b3f9fc8ea15d152add07294", "dialer2", 119);
+        InsertLlamada con = new InsertLlamada("c9e1074f5b3f9fc8ea15d152add07294", "dialer2", 119,"1");
         con.InsertarLlamadaDataBase();
     }
 }
