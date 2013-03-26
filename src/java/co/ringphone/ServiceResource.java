@@ -44,7 +44,7 @@ public class ServiceResource {
     }
 
     @GET
-    @Path("/oneCall/{extorigen}/{numteldestino}")
+    @Path("/oneCall/{extorigen}/{numteldestino}/{confirmacion}")
     @Produces({"application/xml"})
     public Response oneCall(@PathParam("extorigen") String extorigen, @PathParam("numteldestino") String numteldestino) throws Exception {
 
@@ -56,8 +56,8 @@ public class ServiceResource {
         ConexionDataBase connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
         connnn.InsertarLlamadaDataBase();
 
-        ConsultaIdSOS conn2 = new ConsultaIdSOS("1");
-        String idsos = conn2.consultar();
+//        ConsultaIdSOS conn2 = new ConsultaIdSOS("1");
+//        String idsos = conn2.consultar();
 
 //        ConsultaHash con4 = new ConsultaHash(45,"c9e1074f5b3f9fc8ea15d152add07294");
         ConsultaHash con4 = new ConsultaHash(extorigen);
@@ -97,8 +97,8 @@ public class ServiceResource {
                     respuestallamId = "1";
                     connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
                     connnn.InsertarLlamadaDataBase();
-                    conn2 = new ConsultaIdSOS("1");
-                    idsos = conn2.consultar();
+//                    conn2 = new ConsultaIdSOS("1");
+//                    idsos = conn2.consultar();
                     InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1],respuestallamId);
                     con2.InsertarLlamadaDataBase();
                     UpdateusuarioPorRecargaOLlamada con1 = new UpdateusuarioPorRecargaOLlamada(extorigen);
@@ -111,8 +111,8 @@ public class ServiceResource {
                     respuestallamId = "2";
                     connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
                     connnn.InsertarLlamadaDataBase();
-                    conn2 = new ConsultaIdSOS("1");
-                    idsos = conn2.consultar();
+//                    conn2 = new ConsultaIdSOS("1");
+//                    idsos = conn2.consultar();
                     InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1],respuestallamId);
                     con2.InsertarLlamadaDataBase();
 //                    respuestallam = "&iexclEs posible que el tel&eacutefono destino est&eacute ocupado en este momento!";
@@ -122,8 +122,8 @@ public class ServiceResource {
                     respuestallamId = "3";
                     connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
                     connnn.InsertarLlamadaDataBase();
-                    conn2 = new ConsultaIdSOS("1");
-                    idsos = conn2.consultar();
+//                    conn2 = new ConsultaIdSOS("1");
+//                    idsos = conn2.consultar();
                     InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1],respuestallamId);
                     con2.InsertarLlamadaDataBase();
 //                    respuestallam = "&iexclTodos nuestros agentes est&aacuten ocupados en est&eacute momento. <br>Intentelo m&aacutes tarde!";
@@ -132,8 +132,8 @@ public class ServiceResource {
                     respuestallamId = "4";
                     connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
                     connnn.InsertarLlamadaDataBase();
-                    conn2 = new ConsultaIdSOS("1");
-                    idsos = conn2.consultar();
+//                    conn2 = new ConsultaIdSOS("1");
+//                    idsos = conn2.consultar();
                     InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1],respuestallamId);
                     con2.InsertarLlamadaDataBase();
 //                    respuestallam = "&iexclEs posible que el tel&eacutefono destino no exista o est&eacute fuera de servicio. <br>Intente con otro tel&eacutefono!";
@@ -142,8 +142,8 @@ public class ServiceResource {
                 respuestallamId = "5";
                 connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
                 connnn.InsertarLlamadaDataBase();
-                conn2 = new ConsultaIdSOS("1");
-                idsos = conn2.consultar();
+//                conn2 = new ConsultaIdSOS("1");
+//                idsos = conn2.consultar();
                 InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1],respuestallamId);
                 con2.InsertarLlamadaDataBase();
 //                respuestallam = "&iexclNo tiene saldo disponible,Hay inconsitencias en su saldo!";
@@ -155,8 +155,8 @@ public class ServiceResource {
             respuestallamId = "6";
             connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
             connnn.InsertarLlamadaDataBase();
-            conn2 = new ConsultaIdSOS("1");
-            idsos = conn2.consultar();
+//            conn2 = new ConsultaIdSOS("1");
+//            idsos = conn2.consultar();
             InsertLlamada con2 = new InsertLlamada(extorigen, numteldestino, resp[1],respuestallamId);
             con2.InsertarLlamadaDataBase();
 //            System.out.println("Condicion 6");
