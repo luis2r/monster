@@ -94,6 +94,7 @@ public class ServiceResource {
                 System.out.println(resp);
 
                 if (resp[0] == 1) {
+                    respuestallamId = "1";
                     connnn = new ConexionDataBase("99999", "102", "104", 1, 1);
                     connnn.InsertarLlamadaDataBase();
                     conn2 = new ConsultaIdSOS("1");
@@ -102,7 +103,7 @@ public class ServiceResource {
                     con2.InsertarLlamadaDataBase();
                     UpdateusuarioPorRecargaOLlamada con1 = new UpdateusuarioPorRecargaOLlamada(extorigen);
                     con1.actualizarSaldoUsuario("llamada");
-                    respuestallamId = "1";
+                    
 //                respuestallam = "&iexclLlamada exitosa exitosa! <br>Duraci&oacuten: "+ resp[1]+ " segundos";
 
 
