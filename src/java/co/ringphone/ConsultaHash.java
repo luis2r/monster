@@ -25,7 +25,7 @@ public class ConsultaHash {
     
     int idclave;
     String hash="";
-            static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer";
+            static final String DATABASE_URL = "jdbc:mysql://localhost:3306/ringpa_user";
 
 // launch the application
     public ConsultaHash(int idclave) {
@@ -60,7 +60,7 @@ public class ConsultaHash {
 // establish connection to database
             // establish connection to database
                 conn = DriverManager.getConnection(
-                        DATABASE_URL, "autodialer", "aut0d14l3rs3rv1c3s");
+                        DATABASE_URL, "RINGPA_DB", "IeF5Poh1*1&");
 //            connection = DriverManager.getConnection(
 //                    DATABASE_URL);
 // create Statement for querying database

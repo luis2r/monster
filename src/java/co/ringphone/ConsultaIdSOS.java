@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class ConsultaIdSOS {
 // database URL
-    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer?user=autodialer&password=aut0d14l3rs3rv1c3s";
+    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/ringpa_user?user=RINGPA_DB&password=IeF5Poh1*1&";
     String idclave;
 // launch the application
     public ConsultaIdSOS(String idclave) {

@@ -25,7 +25,7 @@ public class InsertRecarga {
 
     String idClave;
     float valorRecarga;
-    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer";
+    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/ringpa_user";
 
     public InsertRecarga(String idClave, float valorRecarga) {
 
@@ -56,7 +56,7 @@ int rsett;
             }
 // establish connection to database
                 conn = DriverManager.getConnection(
-                        DATABASE_URL, "autodialer", "aut0d14l3rs3rv1c3s");
+                        DATABASE_URL, "RINGPA_DB", "IeF5Poh1*1&");
 
 //                Class.forName("com.mysql.jdbc.Driver").newInstance();
 //

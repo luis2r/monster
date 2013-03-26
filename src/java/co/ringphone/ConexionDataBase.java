@@ -47,7 +47,7 @@ int rsett;
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                String url = "jdbc:mysql://localhost:3306/autodialer?user=autodialer&password=aut0d14l3rs3rv1c3s";
+                String url = "jdbc:mysql://localhost:3306/ringpa_user?user=RINGPA_DB&password=IeF5Poh1*1&";
 
                 conn = DriverManager.getConnection(url);
 

@@ -21,7 +21,8 @@ public class UpdateusuarioPorRecargaOLlamada {
     String idClave;
     // JDBC driver name and database URL
 // database URL
-    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer";
+//    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer";
+    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/ringpa_user";
 
     public UpdateusuarioPorRecargaOLlamada(String idClave) {
         this.idClave = idClave;
@@ -49,7 +50,7 @@ try {
 
                 // establish connection to database
                 conn = DriverManager.getConnection(
-                        DATABASE_URL, "autodialer", "aut0d14l3rs3rv1c3s");
+                        DATABASE_URL, "RINGPA_DB", "IeF5Poh1*1&");
 
 
 //                conn = DriverManager.getConnection(url);

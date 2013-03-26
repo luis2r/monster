@@ -24,7 +24,7 @@ public class InsertLlamada {
     String destino;
     String estado;
     int consumoSegundos;
-    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/autodialer";
+    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/ringpa_user";
 
     public InsertLlamada(String origen, String destino, int consumoSegundos, String estado) {
 
@@ -59,7 +59,7 @@ public class InsertLlamada {
             }
 // establish connection to database
                 conn = DriverManager.getConnection(
-                        DATABASE_URL, "autodialer", "aut0d14l3rs3rv1c3s");
+                        DATABASE_URL, "RINGPA_DB", "IeF5Poh1*1&");
 //                Class.forName("com.mysql.jdbc.Driver").newInstance();
 //
 //                String url = "jdbc:mysql://localhost:3306/autodialer?user=autodialer&password=aut0d14l3rs3rv1c3s";
