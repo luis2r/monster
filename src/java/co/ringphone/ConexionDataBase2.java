@@ -33,7 +33,6 @@ public class ConexionDataBase2 {
     Statement stmt = null; // query statement
     int rsett;
     String numberPatron;
-    
 
     public ConexionDataBase2() {
     }
@@ -52,6 +51,7 @@ public class ConexionDataBase2 {
         this.consumoSegundos = consumoSegundos;
 
     }
+
     public void setEstado(int estado) {
         this.estado = estado;
 
@@ -59,7 +59,7 @@ public class ConexionDataBase2 {
 
     public void setNumberPatron(String cadenaTodoElNumero) {
         String cadena = cadenaTodoElNumero;
-               
+
         int index = cadena.indexOf("*");
         System.out.println(index);
 
@@ -68,14 +68,13 @@ public class ConexionDataBase2 {
             System.out.println(cadena);
             cadena = cadena.substring(0, cadena.length() - 7);
             System.out.println(cadena);
-        }
-        else{
+        } else {
             cadena = cadena.substring(0, cadena.length() - 7);
             System.out.println(cadena);
         }
-        
-        
-        
+
+
+
         //        System.out.println(cadena);
         this.numberPatron = cadena;
 
@@ -121,7 +120,7 @@ public class ConexionDataBase2 {
 //                System.out.println();
             } // end while
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionDataBase2.class.getName()).log(Level.SEVERE, null, ex);
         } finally // ensure resultSet, statement and connection are closed
         {
             this.desconectar();
@@ -129,9 +128,9 @@ public class ConexionDataBase2 {
 
         return number;
     }
-    
-        public String getConfirmationConsulta(String confirmationProporcionado) {
-            //        Connection conn = null; // manages connection
+
+    public String getConfirmationConsulta(String confirmationProporcionado) {
+        //        Connection conn = null; // manages connection
         PreparedStatement ps = null; // query statement
         ResultSet resultSet = null; // manages results
         String number = null;
@@ -165,7 +164,7 @@ public class ConexionDataBase2 {
 //                System.out.println();
             } // end while
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionDataBase2.class.getName()).log(Level.SEVERE, null, ex);
         } finally // ensure resultSet, statement and connection are closed
         {
             this.desconectar();
@@ -174,9 +173,9 @@ public class ConexionDataBase2 {
         return number;
 
     }
-        
-        public double getDbSaldo(String hashp) {
-            //        Connection conn = null; // manages connection
+
+    public double getDbSaldo(String hashp) {
+        //        Connection conn = null; // manages connection
         PreparedStatement ps = null; // query statement
         ResultSet resultSet = null; // manages results
         double number = Integer.MAX_VALUE;;
@@ -210,7 +209,7 @@ public class ConexionDataBase2 {
 //                System.out.println();
             } // end while
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionDataBase2.class.getName()).log(Level.SEVERE, null, ex);
         } finally // ensure resultSet, statement and connection are closed
         {
             this.desconectar();
@@ -224,9 +223,15 @@ public class ConexionDataBase2 {
         try {
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String url = "jdbc:mysql://localhost:3306/RINGPA_DB?user=autodialer&password=aut0d14l3rs3rv1c3s";
+            
+//            String url = "jdbc:mysql://localhost:3306/RINGPA_DB?user=autodialer&password=aut0d14l3rs3rv1c3s";
+//            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB?user=ringpa_user&password=IeF5Poh1*1&";
 
-            this.conn = DriverManager.getConnection(url);
+//            this.conn = DriverManager.getConnection(url);
+            
+            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
+
+            this.conn = DriverManager.getConnection(url,"ringpa_user","IeF5Poh1*1&");
 
             this.status = "Connection opened";
             System.out.println("conextion ok");
@@ -328,7 +333,7 @@ public class ConexionDataBase2 {
             ps.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionDataBase2.class.getName()).log(Level.SEVERE, null, ex);
         } finally // ensure resultSet, statement and connection are closed
         {
             this.desconectar();
@@ -338,21 +343,21 @@ public class ConexionDataBase2 {
     public static void main(String[] args) {
 
         ConexionDataBase2 con = new ConexionDataBase2();
-        System.out.println("Prueba "+con.getHashToNumberConsulta("xyz"));
-        System.out.println("Prueba "+con.getConfirmationConsulta("123")); 
-        if(con.getHashToNumberConsulta("xyz").equals(con.getConfirmationConsulta("123"))){
+        System.out.println("Prueba " + con.getHashToNumberConsulta("xyz"));
+        System.out.println("Prueba " + con.getConfirmationConsulta("123"));
+        if (con.getHashToNumberConsulta("xyz").equals(con.getConfirmationConsulta("123"))) {
             System.out.println("true");
-            
-        }
-        else
+
+        } else {
             System.out.println("false");
+        }
         con.setOrigen("xyz");
         con.setDestino("104");
         con.setConsumo(400);
         con.setNumberPatron("573206390201");
         con.setEstado(1);
-        con.InsertarLlamadaDataBase();  
+        con.InsertarLlamadaDataBase();
         con.getDbSaldo("xyz");
-        System.out.println("Prueba "+con.getDbSaldo("xyz"));
+        System.out.println("Prueba " + con.getDbSaldo("xyz"));
     }
 }//
