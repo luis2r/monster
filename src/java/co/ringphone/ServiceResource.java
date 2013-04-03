@@ -36,12 +36,12 @@ public class ServiceResource {
      *
      * @return an instance of java.lang.String
      */
-    @GET
-    @Produces("application/xml")
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
+//    @GET
+//    @Produces("application/xml")
+//    public String getXml() {
+//        //TODO return proper representation object
+//        throw new UnsupportedOperationException();
+//    }
 
     @GET
     @Path("/oneCall/{extorigen}/{numteldestino}/{confirmacion}")
@@ -243,16 +243,16 @@ public class ServiceResource {
 //        return respuestallam;
     }
 
-    @GET
-    @Path("/recarga/{idUsuario}/{valorRecarga}")//id de usuario sera el hash de aquie en adelante
-    @Produces({"text/plain"})
-    public String recarga(@PathParam("idUsuario") String idUsuario, @PathParam("valorRecarga") int valorRecarga) throws Exception {
-        InsertRecarga con = new InsertRecarga(idUsuario, valorRecarga);
-        con.InsertarRecargaDataBase();
-        UpdateusuarioPorRecargaOLlamada con1 = new UpdateusuarioPorRecargaOLlamada(idUsuario);
-        con1.actualizarSaldoUsuario("recarga");
-        return "recarga exitosa";
-    }
+//    @GET
+//    @Path("/recarga/{idUsuario}/{valorRecarga}")//id de usuario sera el hash de aquie en adelante
+//    @Produces({"text/plain"})
+//    public String recarga(@PathParam("idUsuario") String idUsuario, @PathParam("valorRecarga") int valorRecarga) throws Exception {
+//        InsertRecarga con = new InsertRecarga(idUsuario, valorRecarga);
+//        con.InsertarRecargaDataBase();
+//        UpdateusuarioPorRecargaOLlamada con1 = new UpdateusuarioPorRecargaOLlamada(idUsuario);
+//        con1.actualizarSaldoUsuario("recarga");
+//        return "recarga exitosa";
+//    }
 
     /**
      * PUT method for updating or creating an instance of ServiceResource
@@ -260,8 +260,8 @@ public class ServiceResource {
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */
-    @PUT
-    @Consumes("application/xml")
-    public void putXml(String content) {
-    }
+//    @PUT
+//    @Consumes("application/xml")
+//    public void putXml(String content) {
+//    }
 }
