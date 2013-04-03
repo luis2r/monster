@@ -35,8 +35,8 @@ public class ConexionDataBase {
 
     public void InsertarLlamadaDataBase() {
         Connection conn = null; // manages connection
-Statement stmt = null; // query statement
-int rsett;
+        Statement stmt = null; // query statement
+        int rsett;
 
 
         try {
@@ -47,7 +47,9 @@ int rsett;
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                String url = "jdbc:mysql://localhost:3306/ringpa_user?user=RINGPA_DB&password=IeF5Poh1*1&";
+//                String url = "jdbc:mysql://localhost:3306/RINGPA_DB?user=ringpa_user&password=IeF5Poh1*1&";
+//                String url = "jdbc:mysql://localhost:3306/RINGPA_DB?user=root&password=root";
+                String url = "jdbc:mysql://localhost:3306/RINGPA_DB?user=autodialer&password=aut0d14l3rs3rv1c3s";
 
                 conn = DriverManager.getConnection(url);
 
@@ -75,11 +77,9 @@ int rsett;
 //            int rsett = stmt.executeUpdate("INSERT INTO alarma (`alarma_id`,`mensaje`,`destino`,`numero_reintentos`,`tiempo_reintentos`) VALUES ("+idClave+","+destino+","+origen+","+numreintentos+","+tiempoentrereintento+")");
 //            rsett = stmt.executeUpdate("INSERT INTO llamada_clave200 (`id_clave`,`origen`,`destino`,`num_reintentos`,`tiempo_entre_reintento`) VALUES (" + idClave + "," + origen + "," + destino + "," + numreintentos + "," + tiempoentrereintento + ")");
 
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(ConexionDataBase.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        finally // ensure resultSet, statement and connection are closed
+        } finally // ensure resultSet, statement and connection are closed
         {
             try {
 //                rsett.close();
@@ -91,8 +91,6 @@ int rsett;
                 exception.printStackTrace();
             } // end catch
         } // end finally
-
-
 
 
     }
