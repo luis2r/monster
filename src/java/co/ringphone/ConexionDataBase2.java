@@ -229,8 +229,8 @@ public class ConexionDataBase2 {
 
 //            this.conn = DriverManager.getConnection(url);
             
-            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
-
+//            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
+            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
             this.conn = DriverManager.getConnection(url,"ringpa_user","IeF5Poh1*1&");
 
             this.status = "Connection opened";
@@ -270,7 +270,7 @@ public class ConexionDataBase2 {
 
             String query = "";
 
-            query = "SELECT `minutePriceBase` FROM `ma_CallPrice` WHERE `numberPattern`=? and `planId`=(SELECT  `id` FROM  `ma_RingphoneButton` WHERE `ma_RingphoneButton`.`hash` = ?)";
+            query = "SELECT `minutePriceBase` FROM `ma_CallPrice` WHERE `numberPattern`=? and `planId`=(SELECT  `planId` FROM  `ma_RingphoneButton` WHERE `ma_RingphoneButton`.`hash` = ?)";
 
 //            this.numberPatron = "57320";
 

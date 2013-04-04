@@ -92,7 +92,8 @@ public class ServiceResource {
         double saldoMinutos = Double.MAX_VALUE;
 
         AsteriskCallEventsStateProd call = null;
-//        System.out.println("Hash: "+ hashorigen);
+        System.out.println("Hash: "+ hashorigen);
+         System.out.println("Hash: "+ hashorigen);
         if (!(hashorigen == null) && (hashorigen.equals(consulta))) {
 
 //            con = new ConsultaSaldoMinutos(extorigen);
