@@ -5,12 +5,12 @@
 package co.ringphone;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.ArrayList;
+//import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
+//import java.util.logging.Level;
 import org.asteriskjava.live.AsteriskChannel;
 import org.asteriskjava.live.DefaultAsteriskServer;
 import org.asteriskjava.live.LiveException;
@@ -26,17 +26,17 @@ import org.asteriskjava.manager.action.OriginateAction;
 import org.asteriskjava.manager.action.StatusAction;
 import org.asteriskjava.manager.event.BridgeEvent;
 import org.asteriskjava.manager.event.CdrEvent;
-import org.asteriskjava.manager.event.ConnectEvent;
+//import org.asteriskjava.manager.event.ConnectEvent;
 import org.asteriskjava.manager.event.DialEvent;
 import org.asteriskjava.manager.event.HangupEvent;
 //import org.asteriskjava.manager.event.LinkEvent;
 import org.asteriskjava.manager.event.ManagerEvent;
-import org.asteriskjava.manager.event.NewAccountCodeEvent;
-import org.asteriskjava.manager.event.NewCallerIdEvent;
-import org.asteriskjava.manager.event.NewChannelEvent;
-import org.asteriskjava.manager.event.NewStateEvent;
-import org.asteriskjava.manager.event.StatusCompleteEvent;
-import org.asteriskjava.manager.event.StatusEvent;
+//import org.asteriskjava.manager.event.NewAccountCodeEvent;
+//import org.asteriskjava.manager.event.NewCallerIdEvent;
+//import org.asteriskjava.manager.event.NewChannelEvent;
+//import org.asteriskjava.manager.event.NewStateEvent;
+//import org.asteriskjava.manager.event.StatusCompleteEvent;
+//import org.asteriskjava.manager.event.StatusEvent;
 //import org.asteriskjava.manager.event.UnlinkEvent;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
     private DefaultAsteriskServer asteriskServer = null;
     private String strChannelStatus = "NoStatusYet";
     private String user = "";
-    private int absoluteTimeOut=0;
+    private int absoluteTimeOut = 0;
     private String phoneNumber = "";
     private ManagerConnection managerConnection;
     boolean outEvent = false;
@@ -86,8 +86,8 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
         originateAction.setPriority(new Integer(1));
         originateAction.setTimeout(new Long(40000));
         originateAction.setVariable("customernum", phoneNumber);
-        originateAction.setCallerId("RingPhone"+"<"+user+">");
-        
+        originateAction.setCallerId("RingPhone" + "<" + user + ">");
+
 //        originateAction.
         return originateAction;
     }
@@ -134,34 +134,34 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
 
 
         while (!this.outEvent) {
-            
-            
-                    int i = 0;
-        while (!this.out2) {
-            i++;
-            Thread.sleep(500L);
+
+
+            int i = 0;
+            while (!this.out2) {
+                i++;
+                Thread.sleep(500L);
 
 //            if (contestado==true) {
 //                out2=true;
 //            }
 
-            if (i == 100) {
-                this.out2 = true;
-                this.outEvent = true;
-                this.respuesta[0] = 3;
-                this.respuesta[1] = 0; // add at 2rd index
-                this.respuesta[2] = 0; // add at 2rd index
-                HangupAction hangupAction = new HangupAction(this.sourceUniqueIdCall);
-                try {
-                    this.managerConnection.sendAction(hangupAction);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                if (i == 100) {
+                    this.out2 = true;
+                    this.outEvent = true;
+                    this.respuesta[0] = 3;
+                    this.respuesta[1] = 0; // add at 2rd index
+                    this.respuesta[2] = 0; // add at 2rd index
+                    HangupAction hangupAction = new HangupAction(this.sourceUniqueIdCall);
+                    try {
+                        this.managerConnection.sendAction(hangupAction);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
 
+                }
             }
-        }
-            
-            
+
+
             try {
 //            Thread.sleep(3000);
                 Thread.sleep(500L);
@@ -194,7 +194,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
 
     @Override
     public void onDialing(AsteriskChannel channel) {
-        this.currentChannel=channel.getName();
+        this.currentChannel = channel.getName();
         this.asteriskServer.getChannelByName(this.currentChannel).setAbsoluteTimeout(this.absoluteTimeOut);
 
         this.strChannelStatus = "Dialing";
@@ -338,7 +338,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
                     this.sourceUniqueIdCallChannel = e.getChannel1();
                     this.destinationUniqueIdCallChannel = e.getChannel2();
 
-                    this.outEvent = true;
+//                    this.outEvent = true;
                 }
             }
             if (e.isLink()) {
@@ -427,9 +427,11 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
 //        }
         if (event instanceof CdrEvent) {
             System.out.println("se hace CdrEvent");
+            System.out.println("*****canal cdr*****");
             CdrEvent cdr = (CdrEvent) event;
-            System.out.println("getChannel cdr: " + cdr.getChannel());
-
+            System.out.println("cdr.getDestinationChannel() cdr: " + cdr.getDestinationChannel());
+            System.out.println("*****canal llamada*****");
+            System.out.println("getChannel2 "+this.destinationUniqueIdCallChannel);
             if (this.destinationUniqueIdCallChannel.equals(cdr.getDestinationChannel())) {
                 System.out.println("\n getChannel cdr: " + cdr.getChannel());
                 System.out.println("getDestinationChannel() cdr: " + cdr.getDestinationChannel());
@@ -461,7 +463,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
                 this.respuesta[0] = 1;
                 this.respuesta[1] = cdr.getBillableSeconds(); // add at 2rd index
                 this.respuesta[2] = tiempotimbrado; // add at 2rd index
-
+                this.outEvent = true;
 
             }
 
@@ -473,6 +475,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
 
         this.user = number;
     }
+
     public void setAbsoluteTimeout(int absoluteTimeOut) {
 
         this.absoluteTimeOut = absoluteTimeOut;

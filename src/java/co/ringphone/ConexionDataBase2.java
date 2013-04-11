@@ -229,8 +229,8 @@ public class ConexionDataBase2 {
 
 //            this.conn = DriverManager.getConnection(url);
             
-//            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
-            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
+            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
+//            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
             this.conn = DriverManager.getConnection(url,"ringpa_user","IeF5Poh1*1&");
 
             this.status = "Connection opened";
@@ -283,7 +283,7 @@ public class ConexionDataBase2 {
             ResultSet rs = ps.executeQuery();
             double dato = 0;
             while (rs.next()) {
-                System.out.println("while " + rs.getInt(1));
+//                System.out.println("while " + rs.getInt(1));
                 dato = rs.getInt(1);
             }
             this.valorConsumo = dato * Math.ceil((double) this.consumoSegundos / 60);
