@@ -253,8 +253,8 @@ public class ConexionDataBase2 {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 
-            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
-//            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
+//            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
+            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
             this.conn = DriverManager.getConnection(url, "ringpa_user", "IeF5Poh1*1&");
 
             this.status = "Connection opened";

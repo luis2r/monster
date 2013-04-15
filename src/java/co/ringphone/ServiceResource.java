@@ -61,14 +61,13 @@ public class ServiceResource {
             saldoMinutosDinero = con2.getDbSaldo(extorigen);
             preciominuto = con2.getDbPrecioMinuto(extorigen);
             saldoMinutos = saldoMinutosDinero / preciominuto;
-
+System.out.println(""+saldoMinutosDinero+" "+preciominuto+" "+saldoMinutos+" ");
 
 
             if (saldoMinutos >= 1 && saldoMinutos < Integer.MAX_VALUE) {
                 call = new AsteriskCallEventsStateProd();
                 call.setNumber(numteldestino); //destino
                 call.setMessage(hashorigen);//origen
-                con2.setNumberPatron(numteldestino);
 
                 call.setAbsoluteTimeout((int) Math.floor(saldoMinutos) * 60 + 40);
                 resp = call.originate();
