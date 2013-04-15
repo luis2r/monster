@@ -203,6 +203,49 @@ public class ConexionDataBase2 {
         return number;
 
     }
+    
+    public double getDbPrecioMinuto(String hashp) {
+        
+        double dato = 0;
+                try {
+
+            this.conectar();
+            if (debug) {
+                System.out.println(this.status);
+            }
+
+            String query = "";
+
+            query = "SELECT `minutePriceBase` FROM `ma_CallPrice` WHERE `numberPattern`=? and `planId`=(SELECT  `planId` FROM  `ma_RingphoneButton` WHERE `ma_RingphoneButton`.`hash` = ?)";
+
+//            this.numberPatron = "57320";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setString(1, this.numberPatron);
+            ps.setString(2, this.origen);
+
+            // execute the java preparedstatement
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                dato = rs.getInt(1);
+            }
+
+
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionDataBase2.class.getName()).log(Level.SEVERE, null, ex);
+        } finally // ensure resultSet, statement and connection are closed
+        {
+            this.desconectar();
+        } // end finally
+
+
+        return dato;
+
+    }
 
     public void conectar() {
         try {
@@ -210,8 +253,8 @@ public class ConexionDataBase2 {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 
-//            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
-            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
+            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
+//            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
             this.conn = DriverManager.getConnection(url, "ringpa_user", "IeF5Poh1*1&");
 
             this.status = "Connection opened";
@@ -324,11 +367,12 @@ public class ConexionDataBase2 {
         }
         con.setOrigen("xyz");
         con.setDestino("104");
-        con.setConsumo(400);
+//        con.setConsumo(400);
         con.setNumberPatron("573206390201");
-        con.setEstado(1);
-        con.InsertarLlamadaDataBase();
-        con.getDbSaldo("xyz");
-        System.out.println("Prueba " + con.getDbSaldo("xyz"));
+//        con.setEstado(1);
+//        con.InsertarLlamadaDataBase();
+//        con.getDbSaldo("xyz");
+//        con.getDbPrecioMinuto("xyz");
+        System.out.println("saldo " + con.getDbSaldo("xyz")+ "precio " + con.getDbPrecioMinuto("xyz"));
     }
 }//

@@ -242,8 +242,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
 
         if (event instanceof CdrEvent) {
             CdrEvent cdr = (CdrEvent) event;
-            if (debug) 
-            {
+            if (debug) {
                 System.out.println("se hace CdrEvent");
                 System.out.println("*****canal cdr*****");
                 System.out.println("cdr.getDestinationChannel() cdr: " + cdr.getDestinationChannel());
@@ -258,8 +257,7 @@ public class AsteriskCallEventsStateProd implements OriginateCallback, ManagerEv
 
 //                System.out.println("getSrc() cdr: " + cdr.getSrc());
 //                System.out.println("getAccountCode cdr: " + cdr.getAccountCode());
-                if (debug)
-                {
+                if (debug) {
                     System.out.println("getBillableSeconds cdr: " + cdr.getBillableSeconds());
                 }
 //                System.out.println("getUniqueId() cdr: " + cdr.getUniqueId());
