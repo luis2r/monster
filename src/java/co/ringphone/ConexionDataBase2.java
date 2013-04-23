@@ -33,6 +33,7 @@ public class ConexionDataBase2 {
     Statement stmt = null; // query statement
     int rsett;
     String numberPatron;
+    String hash;
     private static boolean debug = false;
 
     public ConexionDataBase2() {
@@ -124,7 +125,7 @@ public class ConexionDataBase2 {
         {
             this.desconectar();
         } // end finally
-
+        this.hash = number;
         return number;
     }
 
@@ -203,11 +204,11 @@ public class ConexionDataBase2 {
         return number;
 
     }
-    
+
     public double getDbPrecioMinuto(String hashp) {
-        
+
         double dato = 0;
-                try {
+        try {
 
             this.conectar();
             if (debug) {
@@ -227,7 +228,7 @@ public class ConexionDataBase2 {
 
             // execute the java preparedstatement
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 dato = rs.getInt(1);
             }
@@ -253,8 +254,8 @@ public class ConexionDataBase2 {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 
-//            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
-            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
+            String url = "jdbc:mysql://192.168.1.252:3306/RINGPA_DB";
+//            String url = "jdbc:mysql://localhost:3306/RINGPA_DB";
             this.conn = DriverManager.getConnection(url, "ringpa_user", "IeF5Poh1*1&");
 
             this.status = "Connection opened";
@@ -322,7 +323,7 @@ public class ConexionDataBase2 {
             ps = conn.prepareStatement(query1);
 
             ps.setString(1, this.origen);
-            ps.setString(2, this.origen);
+            ps.setString(2, this.hash);
             ps.setString(3, this.destino);
             ps.setInt(4, this.consumoSegundos);;
 
@@ -373,6 +374,6 @@ public class ConexionDataBase2 {
 //        con.InsertarLlamadaDataBase();
 //        con.getDbSaldo("xyz");
 //        con.getDbPrecioMinuto("xyz");
-        System.out.println("saldo " + con.getDbSaldo("xyz")+ "precio " + con.getDbPrecioMinuto("xyz"));
+        System.out.println("saldo " + con.getDbSaldo("xyz") + "precio " + con.getDbPrecioMinuto("xyz"));
     }
 }//

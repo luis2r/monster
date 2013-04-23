@@ -52,26 +52,27 @@ public class ServiceResource {
         double saldoMinutos = Double.MAX_VALUE;
         double preciominuto = Double.MAX_VALUE;
         AsteriskCallEventsStateProd call = null;
-;
+        ;
         if (!(hashorigen == null) && (hashorigen.equals(consulta))) {
-            con2.setOrigen(hashorigen);
+            con2.setOrigen(extorigen);
             con2.setDestino(numteldestino);
             con2.setNumberPatron(numteldestino);
-            
+
             saldoMinutosDinero = con2.getDbSaldo(extorigen);
             preciominuto = con2.getDbPrecioMinuto(extorigen);
             saldoMinutos = saldoMinutosDinero / preciominuto;
-System.out.println(""+saldoMinutosDinero+" "+preciominuto+" "+saldoMinutos+" ");
+
 
 
             if (saldoMinutos >= 1 && saldoMinutos < Integer.MAX_VALUE) {
                 call = new AsteriskCallEventsStateProd();
                 call.setNumber(numteldestino); //destino
                 call.setMessage(hashorigen);//origen
+                con2.setNumberPatron(numteldestino);
 
                 call.setAbsoluteTimeout((int) Math.floor(saldoMinutos) * 60 + 40);
                 resp = call.originate();
-;
+                ;
                 if (resp[0] == 1) {
                     respuestallamId = "1";
                 } else if (resp[0] == 2) {
@@ -82,9 +83,11 @@ System.out.println(""+saldoMinutosDinero+" "+preciominuto+" "+saldoMinutos+" ");
                     respuestallamId = "4";
                 }
             } else {
+                resp[0]=5;
                 respuestallamId = "5";
             }
         } else {
+            resp[0]=6;
             respuestallamId = "6";
         }
 
