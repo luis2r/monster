@@ -205,6 +205,50 @@ public class ConexionDataBase2 {
 
     }
 
+    
+        public String getEmail(String hashp) {
+
+        String dato = "";
+        try {
+
+            this.conectar();
+            if (debug) {
+                System.out.println(this.status);
+            }
+
+            String query = "";
+
+            query = "SELECT `email` FROM `ma_User` WHERE `id`=(SELECT  `userId` FROM  `ma_RingphoneButton` WHERE `ma_RingphoneButton`.`hash` = ?)";
+
+//            this.numberPatron = "57320";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+
+//            ps.setString(1, this.numberPatron);
+            ps.setString(1, this.origen);
+
+            // execute the java preparedstatement
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                dato = rs.getString(1);
+            }
+
+
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionDataBase2.class.getName()).log(Level.SEVERE, null, ex);
+        } finally // ensure resultSet, statement and connection are closed
+        {
+            this.desconectar();
+        } // end finally
+
+
+        return dato;
+
+    }
+    
     public double getDbPrecioMinuto(String hashp) {
 
         double dato = 0;
@@ -375,5 +419,7 @@ public class ConexionDataBase2 {
 //        con.getDbSaldo("xyz");
 //        con.getDbPrecioMinuto("xyz");
         System.out.println("saldo " + con.getDbSaldo("xyz") + "precio " + con.getDbPrecioMinuto("xyz"));
+        System.out.println("email " + con.getEmail("xyz"));
+        
     }
 }//

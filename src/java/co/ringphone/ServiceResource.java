@@ -85,6 +85,9 @@ public class ServiceResource {
             } else {
                 resp[0]=5;
                 respuestallamId = "5";
+                String email=con2.getEmail(extorigen);
+                EnviarCorreo n = new EnviarCorreo(email, hashorigen);
+                
             }
         } else {
             resp[0]=6;
